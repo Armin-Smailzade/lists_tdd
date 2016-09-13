@@ -1,3 +1,4 @@
+from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import unittest
@@ -42,5 +43,9 @@ class NewVisitorTest(unittest.TestCase):
 		self.fail('Finish the test!')
 
 
-if __name__ == '__main__':
-	unittest.main(warnings='ignore')
+
+# dont need this since we run the class with 
+# Django test runner and not the command line
+
+# if __name__ == '__main__':
+# 	unittest.main(warnings='ignore')

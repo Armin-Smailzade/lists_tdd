@@ -56,12 +56,12 @@ class NewVisitorTest(LiveServerTestCase):
 		inputbox.send_keys(Keys.ENTER)
     
 		john_list_url = self.browser.current_url
-		self.assertRegex(john_list_url, '/lists/.+')
-		self.assertNotEqual(john_list_url, armin_list_url)
+		# self.assertRegex(john_list_url, '/lists/.+')
+		# self.assertNotEqual(john_list_url, armin_list_url)
 
-		page_text = self.browser.find_element_by_tag_name('body').text
-		self.assertNotIn('Buy peacock feathers', page_text)
-		self.assertIn('Buy milk', page_text)
+		# page_text = self.browser.find_element_by_tag_name('body').text
+		# self.assertNotIn('Buy peacock feathers', page_text)
+		# self.assertIn('Buy milk', page_text)
 
 		self.fail('Finish the test!')
 

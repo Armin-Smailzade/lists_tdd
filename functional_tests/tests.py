@@ -1,9 +1,10 @@
-from django.test import LiveServerTestCase
+# from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import unittest
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
 
 	def setUp(self):
 		self.browser = webdriver.Chrome()
@@ -43,6 +44,7 @@ class NewVisitorTest(LiveServerTestCase):
 		self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
 
 		## a new user comes in
+		self.browser.refresh()
 		self.browser.quit()
 		self.browser = webdriver.Chrome()
 
@@ -56,12 +58,12 @@ class NewVisitorTest(LiveServerTestCase):
 		inputbox.send_keys(Keys.ENTER)
     
 		john_list_url = self.browser.current_url
-		# self.assertRegex(john_list_url, '/lists/.+')
-		# self.assertNotEqual(john_list_url, armin_list_url)
+		self.assertRegex(john_list_url, '/lists/.+')
+		self.assertNotEqual(john_list_url, armin_list_url)
 
-		# page_text = self.browser.find_element_by_tag_name('body').text
-		# self.assertNotIn('Buy peacock feathers', page_text)
-		# self.assertIn('Buy milk', page_text)
+		page_text = self.browser.find_element_by_tag_name('body').text
+		self.assertNotIn('Buy peacock feathers', page_text)
+		self.assertIn('Buy milk', page_text)
 
 		# self.fail('Finish the test!')
 
